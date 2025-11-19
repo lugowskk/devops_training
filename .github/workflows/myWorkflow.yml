@@ -35,7 +35,11 @@ jobs:
     environment:
       name: QA
     steps:        
-      # Runs a set of commands using the runners shell
+    # Runs a set of commands using the runners shell
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
       - name: Run a multi-line script
         run: |
           echo Add other actions to build,
