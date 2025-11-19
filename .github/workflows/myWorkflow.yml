@@ -46,7 +46,7 @@ jobs:
           echo test, and deploy your project.
       - name: Create tag 1.0.0.1
         run: |
-          git config user.name "lugowskk"
+          git config user.name "github-actions"
           git config user.email "github-actions@github.com"
           git tag -a 1.0.0.1 -m "Solution 1.0.0.1"
           git push origin 1.0.0.1
