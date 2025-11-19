@@ -7,9 +7,6 @@ on:
   # Triggers the workflow on push or pull request events but only for the "main" branch
   push:
     branches: [ "main" ]
-  pull_request:
-    branches: [ "main" ]
-
 
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
@@ -32,16 +29,20 @@ jobs:
 
 
   DeployDev:
-    name: Deply to Dev
-    if: github.event_name == 'pull_reqiest'
+    name: Deply
     needs: [Build]
     runs-on: ubuntu-latest
     environment:
-      name: Development
-      url: 'http://dev.myapp.com'
+      name: QA
     steps:        
       # Runs a set of commands using the runners shell
       - name: Run a multi-line script
         run: |
           echo Add other actions to build,
           echo test, and deploy your project.
+      - name: Create tag 1.0.0.1
+        run: |
+          git config user.name "github-actions"
+          git config user.email "github-actions@github.com"
+          git tag -a 1.0.0.1 -m "Solution 1.0.0.1"
+          git push origin 1.0.0.1
